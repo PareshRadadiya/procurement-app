@@ -1,4 +1,4 @@
-import { Box, TableCell, Typography, styled, tableCellClasses } from "@mui/material";
+import { Box, TableCell, TextField, Typography, styled, tableCellClasses } from "@mui/material";
 
 // Start Comman styles
 export const ComponentWrapper = styled(Box)({
@@ -125,13 +125,26 @@ export const ItemTitle = styled(Box)({
 export const CommentTitle = styled(Typography)({
   color: "#697E85",
   fontSize: "12px",
+  marginBottom: "-15px",
 });
 
-export const CommentArea = styled(Box)({
-  border: "1px solid #CDD6DB",
-  padding: "10px",
-  minHeight: "60px",
-  fontSize: "12px",
+export const CommentTextArea = styled(TextField)({
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "white",
+  },
+  "& .MuiOutlinedInput-root": {
+    fontSize: "12px",
+    padding: "10px",
+    "& fieldset": {
+      border: "1px solid #CDD6DB",
+    },
+    "&:hover fieldset": {
+      border: "1px solid #CDD6DB",
+    },
+    "&.Mui-focused fieldset": {
+      border: "1px solid #CDD6DB",
+    },
+  },
 });
 
 export const IconWrapper = styled("span")({

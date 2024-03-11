@@ -1,65 +1,158 @@
-import { Input } from "@mui/material";
+import { Autocomplete, Input, MenuItem, Paper, Select } from "@mui/material";
 import {
   ButtonContainer,
+  CustomFilterTextField,
   FilterContainer,
   FilterLabel,
-  FilterLabels,
-  FilterSearch,
   LeftFilterContainer,
+  MainContainer,
   RightFilterContainer,
-  SingleFilterContainer,
   StyledButton,
+  StyledFiltersFormControl,
   StyledFiters,
+  StyledFormControl,
   SubFilter,
 } from "./StyledFilter";
-import DownArrow from "../../../../../assets/down-arrow.svg";
 import shipIcon from "../../../../../assets/shipIcon.svg";
 import searchIcon from "../../../../../assets/searchIcon.svg";
 import Filters from "../../../../../assets/filters.svg";
+import { useState } from "react";
+import { CustomItemCountChip, ItemCount } from "../order/StyledOrder";
+import OrderData from "../../../../../constants/order/OrderData";
+
+const menuProps = {
+  PaperProps: {
+    style: {
+      boxShadow: "none",
+      background: "#E1DBD2",
+      marginTop: "3px",
+    },
+  },
+  anchorOrigin: {
+    vertical: "bottom",
+    horizontal: "left",
+  },
+  transformOrigin: {
+    vertical: "top",
+    horizontal: "left",
+  },
+  getContentAnchorEl: null,
+};
 
 const Filter = () => {
+  const [age, setAge] = useState("PO");
+  const [sort, setSort] = useState("Sort");
+  const [groupBy, setGroupBy] = useState("Group By");
+
+  const handleChange = (setState, event) => {
+    setState(event.target.value);
+  };
+
   return (
-    <FilterContainer>
-      <LeftFilterContainer>
-        <FilterSearch>
-          <img src={shipIcon} alt="ship icon" />
-          <FilterLabels>My Responsibilities</FilterLabels>
-          <img src={searchIcon} alt="search icon" />
-        </FilterSearch>
+    <MainContainer>
+      <FilterContainer>
+        <LeftFilterContainer>
+          <Autocomplete
+            disablePortal
+            options={[
+              "Responsibility 1",
+              "Responsibility 2",
+              "Responsibility 3",
+              "Responsibility 4",
+            ]}
+            renderInput={(params) => (
+              <CustomFilterTextField
+                {...params}
+                variant="outlined"
+                placeholder="My Responsibilities"
+                InputProps={{
+                  ...params.InputProps,
+                  startAdornment: (
+                    <>
+                      <img src={shipIcon} alt="ship icon" />
+                      {params.InputProps.startAdornment}
+                    </>
+                  ),
+                  endAdornment: (
+                    <>
+                      {params.InputProps.endAdornment}
+                      <img src={searchIcon} alt="search icon" />
+                    </>
+                  ),
+                }}
+              />
+            )}
+            PaperComponent={({ children }) => (
+              <Paper style={{ background: "#E1DBD2", marginTop: "5px" }}>{children}</Paper>
+            )}
+          />
 
-        <FilterLabel>Copy id</FilterLabel>
-        <Input placeholder="Enter copy id" />
+          <FilterLabel>Copy id</FilterLabel>
+          <Input placeholder="Enter copy id" />
 
-        <StyledFiters>
-          <SingleFilterContainer>
-            <StyledButton>Sort</StyledButton>
-            <img src={DownArrow} />
-          </SingleFilterContainer>
-          <SingleFilterContainer>
-            <StyledButton>Goup By</StyledButton>
-            <img src={DownArrow} />
-          </SingleFilterContainer>
-        </StyledFiters>
-      </LeftFilterContainer>
+          <StyledFiters>
+            <StyledFiltersFormControl>
+              <Select
+                value={sort}
+                onChange={(e) => handleChange(setSort, e)}
+                displayEmpty
+                inputProps={{ "aria-label": "Without label" }}
+                MenuProps={menuProps}
+              >
+                <MenuItem value={"Sort"}>Sort</MenuItem>
+                <MenuItem value={"Asc"}>Asc</MenuItem>
+                <MenuItem value={"Desc"}>Desc</MenuItem>
+              </Select>
+            </StyledFiltersFormControl>
 
-      <RightFilterContainer>
-        <SubFilter>
-          <FilterSearch>
-            <FilterLabels>PO</FilterLabels>
-            <img src={DownArrow} alt="down-arrow" />
-          </FilterSearch>
-          <img src={Filters} alt="filter icon" />
-        </SubFilter>
+            <StyledFiltersFormControl>
+              <Select
+                value={groupBy}
+                onChange={(e) => handleChange(setGroupBy, e)}
+                displayEmpty
+                inputProps={{ "aria-label": "Without label" }}
+                MenuProps={menuProps}
+              >
+                <MenuItem value={"Group By"}>Group By</MenuItem>
+                <MenuItem value={"1st"}>1st</MenuItem>
+                <MenuItem value={"2nd"}>2nd</MenuItem>
+              </Select>
+            </StyledFiltersFormControl>
+          </StyledFiters>
+        </LeftFilterContainer>
 
-        <FilterLabel>Order no</FilterLabel>
-        <Input placeholder="Enter order no" />
+        <RightFilterContainer>
+          <SubFilter>
+            <StyledFormControl>
+              <Select
+                value={age}
+                onChange={(e) => handleChange(setAge, e)}
+                displayEmpty
+                inputProps={{ "aria-label": "Without label" }}
+                MenuProps={menuProps}
+              >
+                <MenuItem value={"PO"}>PO</MenuItem>
+                <MenuItem value={"OH"}>OH</MenuItem>
+                <MenuItem value={"POH"}>POH</MenuItem>
+              </Select>
+            </StyledFormControl>
+            <img src={Filters} alt="filter icon" />
+          </SubFilter>
 
-        <ButtonContainer>
-          <StyledButton>Clear</StyledButton>
-          <StyledButton>Search</StyledButton>
-        </ButtonContainer>
-      </RightFilterContainer>
-    </FilterContainer>
+          <FilterLabel>Order no</FilterLabel>
+          <Input placeholder="Enter order no" />
+
+          <ButtonContainer>
+            <StyledButton>Clear</StyledButton>
+            <StyledButton>Search</StyledButton>
+          </ButtonContainer>
+        </RightFilterContainer>
+      </FilterContainer>
+
+      <ItemCount>
+        ORDERS <CustomItemCountChip label={OrderData.length} size="small" />
+      </ItemCount>
+    </MainContainer>
   );
 };
 

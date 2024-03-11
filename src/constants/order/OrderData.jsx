@@ -39,6 +39,14 @@ const OrderData = [
     date: "21 Nov 2019",
     icons: ["RT"],
   },
+  {
+    id: "5325-00051",
+    title: "EXTERNAL HARD DISK",
+    category: "Spares",
+    description: "Lorem ipsum",
+    date: "20 Mar 2020",
+    icons: ["RT"],
+  },
 ];
 
 export default OrderData;

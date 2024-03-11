@@ -38,7 +38,7 @@ const AuthorisedSupplier = () => {
       <OtherDetails>
         <RatingContainer>
           Repairs (Riding Squads / Manpower)
-          <Rating name="read-only" value={4} readOnly />
+          <Rating name="read-only" value={4} readOnly size="small" />
         </RatingContainer>
 
         <PersonalDetails>
@@ -56,7 +56,7 @@ const AuthorisedSupplier = () => {
           </PersonalDetailContent>
           <PersonalDetailContent>
             <img src={MailIcon} alt="Mail Icon" />
-            <span style={{textDecoration: "underline"}}>repairs@services.com</span>
+            <span style={{ textDecoration: "underline" }}>repairs@services.com</span>
           </PersonalDetailContent>
         </PersonalDetails>
       </OtherDetails>

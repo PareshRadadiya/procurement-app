@@ -5,6 +5,7 @@ export const HeaderContainer = styled(Box)({
   justifyContent: "space-between",
   alignItems: "center",
   padding: "21px 32px 21px 22px",
+  height: "25px",
 });
 
 export const HeaderTitle = styled(Typography)({

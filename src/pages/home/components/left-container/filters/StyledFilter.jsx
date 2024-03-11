@@ -1,4 +1,11 @@
-import { Box, FormControl, Typography, styled } from "@mui/material";
+import { Box, FormControl, TextField, Typography, styled } from "@mui/material";
+
+export const MainContainer = styled(Box)({
+  position: "sticky",
+  top: "0px",
+  background: "#ffffff",
+  zIndex: 1,
+});
 
 export const FilterContainer = styled(Box)({
   background: "#F2EEEB",
@@ -13,6 +20,7 @@ export const LeftFilterContainer = styled(Box)({
   display: "flex",
   flexDirection: "column",
   gap: "16px",
+  width: "47%",
 });
 
 export const StyledFiters = styled(FormControl)({
@@ -27,12 +35,14 @@ export const FilterLabel = styled(Typography)({
   fontSize: "11px",
   fontWeight: 400,
   lineHeight: "14px",
+  marginBottom: "-15px",
 });
 
 export const RightFilterContainer = styled(Box)({
   display: "flex",
   flexDirection: "column",
   gap: "16px",
+  width: "47%",
 });
 
 export const ButtonContainer = styled(Box)({
@@ -50,31 +60,82 @@ export const StyledButton = styled("span")({
   cursor: "pointer",
 });
 
-export const FilterSearch = styled(Box)({
-  display: "flex",
-  flexDirection: "row",
-  background: "#E1DBD2",
-  gap: "4px",
-  borderRadius: "28px",
-  padding: "14px",
-  justifyContent: "space-between",
-  alignItems: "center",
-  minWidth: "125px",
-});
-
-export const FilterLabels = styled(Box)({
-  fontSize: "12px",
-  fontWeight: "400",
-  lineHeight: "16px",
-});
-
-export const SingleFilterContainer = styled("span")({
-  display: "flex",
-  gap: "5px",
-});
-
 export const SubFilter = styled(Box)({
   display: "flex",
   flexDirection: "row",
   gap: "10px",
+});
+
+export const StyledFormControl = styled(FormControl)({
+  minWidth: 120,
+  backgroundColor: "#E1DBD2",
+  borderRadius: "25px",
+  width: "75%",
+  "& .MuiOutlinedInput-root": {
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "transparent",
+      outline: "none",
+      boxShadow: "none",
+    },
+  },
+  "& .MuiOutlinedInput-input": {
+    fontSize: "12px",
+    fontFamily: "Inter",
+    padding: "10px 14px",
+  },
+  "& .MuiSvgIcon-root": {
+    color: "#00704B",
+  },
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: "transparent",
+  },
+});
+
+export const StyledFiltersFormControl = styled(FormControl)({
+  "& .MuiOutlinedInput-root": {
+    color: "#020A08",
+    fontWeight: 600,
+    outline: "none",
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "transparent",
+      outline: "none",
+      boxShadow: "none",
+    },
+  },
+  "& .MuiOutlinedInput-input": {
+    fontSize: "12px",
+    fontFamily: "Inter",
+    padding: "0px 14px",
+    paddingLeft: "0px",
+  },
+  "& .MuiSvgIcon-root": {
+    color: "#020A08",
+  },
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: "transparent",
+  },
+});
+
+export const CustomFilterTextField = styled(TextField)({
+  "& .MuiOutlinedInput-root": {
+    borderRadius: 25,
+    backgroundColor: "#E1DBD2",
+    padding: "5px 20px",
+    fontSize: "12px",
+    "& fieldset": {
+      border: "none",
+    },
+    "&:hover fieldset": {
+      border: "none",
+    },
+    "&.Mui-focused fieldset": {
+      border: "none",
+    },
+    "& .MuiSvgIcon-root": {
+      color: "#00704B",
+    },
+    "&:hover .MuiOutlinedInput-notchedOutline": {
+      border: "none",
+    },
+  },
 });
